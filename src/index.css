@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-navy-900 text-gray-100 font-sans antialiased;
+  }
+}
+
+@layer components {
+
+
+.panel {
+    @apply bg-navy-800/95 backdrop-blur-sm border border-navy-700/50 
+           rounded-xl p-6 shadow-lg opacity-100 visible;
+  }
+
+  .metric-card {
+    @apply bg-navy-700/50 rounded-lg p-4 opacity-100 visible;
+  }
+
+  /* Add forced visibility for important elements */
+  .force-visible {
+    @apply opacity-100 visible;
+  }
+
+
+
+
+  .navbar {
+    @apply bg-navy-800/95 backdrop-blur-sm border-b border-navy-700/50 fixed w-full z-50;
+  }
+
+@layer components {
+  .nav-item {
+    @apply opacity-100 visible;
+  }
+
+  .nav-link {
+    @apply opacity-100 visible hover:text-blue-400 transition-colors duration-200;
+  }
+}
+
+  .nav-link.active {
+    @apply text-blue-400;
+  }
+
+  .hero-title {
+    @apply text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r 
+           from-blue-400 to-cyan-400 mb-6 animate-gradient;
+  }
+
+  .hero-subtitle {
+    @apply text-xl text-gray-400 max-w-2xl mx-auto;
+  }
+
+ .prose {
+    @apply text-gray-300;
+  }
+
+  .prose h1, .prose h2, .prose h3, .prose h4 {
+    @apply text-white;
+  }
+
+  .prose pre {
+    @apply bg-navy-900/50 border border-navy-700/50;
+  }
+
+  .prose ul {
+    @apply text-gray-300;
+  }
+
+
+    .dashboard-card {
+    @apply transform transition-all duration-300 hover:scale-[1.02] hover:shadow-lg;
+  }
+
+  .stat-item {
+    @apply transform transition-all duration-300;
+  }
+
+  
+}
+
+
+
+
+
+@layer utilities {
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .shadow-glow {
+    box-shadow: 0 0 15px -3px rgba(59, 130, 246, 0.3);
+  }
+}
