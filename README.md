@@ -38,16 +38,19 @@
 **Market Impact Model**
 
 def calculate_market_impact(quantity, volatility, mid_price, depth):
-    """
+    
+
+    //logic begins
     Almgren-Chriss model implementation
     I(v) = σ × |v| × √(T/V) × P
     where:
     - σ: volatility
-    - v: order size
+    - v: order size                                              
     - T: time horizon
     - V: volume
     - P: price
-    """
+    //logic ends
+    
     time_horizon = 1
     volume = depth
     impact = volatility * abs(quantity) * np.sqrt(time_horizon / volume)
@@ -59,7 +62,7 @@ def calculate_market_impact(quantity, volatility, mid_price, depth):
   **Real-time Data Processing**
 
    async def connect_to_okx():
-    """Establishes WebSocket connection to OKX exchange"""
+   
     uri = "wss://ws.gomarket-cpp.goquant.io/ws/l2-orderbook/okx/BTC-USDT-SWAP"
     async with websockets.connect(uri) as websocket:
         while True:
@@ -71,12 +74,12 @@ def calculate_market_impact(quantity, volatility, mid_price, depth):
   **Slippage Calculation**
 
 def calculate_slippage(quantity, market_depth, volatility):
-    """
+    //logic begins
     Calculate expected slippage based on:
     - Order quantity
     - Market depth
     - Asset volatility
-    """
+    //logic ends
     relative_size_impact = quantity / (market_depth + 1)
     return relative_size_impact * volatility * 100
 
