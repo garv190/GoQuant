@@ -22,12 +22,10 @@ last_update = 0
 
 
 def calculate_slippage(quantity, market_depth, volatility):
-    """Calculate expected slippage based on order size and market depth."""
     relative_size_impact = quantity / (market_depth + 1)
-    return relative_size_impact * volatility * 100  # Convert to percentage
+    return relative_size_impact * volatility * 100  
 
 def calculate_fees(quantity, fee_tier):
-    """Calculate exchange fees based on tier."""
     fee_rates = {
         'default': 0.001, 
         'tier1': 0.0008,   
@@ -39,7 +37,6 @@ def calculate_fees(quantity, fee_tier):
     return quantity * fee_rate
 
 def calculate_market_impact(quantity, volatility, mid_price, depth):
-    """Simplified Almgren-Chriss model for market impact."""
     time_horizon = 1  
     volume = depth
     
@@ -47,12 +44,10 @@ def calculate_market_impact(quantity, volatility, mid_price, depth):
     return impact * 100  
 
 def calculate_maker_taker_proportion(quantity, depth):
-    """Predict maker/taker proportion based on order size relative to depth."""
     proportion = 1 - min(0.9, quantity / (depth * 10 + 1))
     return max(0.1, proportion)  
 
 def process_orderbook(orderbook_data, params):
-    """Process orderbook data and calculate analytics."""
     start_time = time.time()
     
     
@@ -88,7 +83,7 @@ def process_orderbook(orderbook_data, params):
     net_cost = slippage + fees + market_impact
     
     end_time = time.time()
-    processing_time = (end_time - start_time) * 1000  # Convert to milliseconds
+    processing_time = (end_time - start_time) * 1000  
     
     return {
         'slippage': slippage,
@@ -141,7 +136,7 @@ websocket_thread.start()
 
 @app.route('/api/orderbook', methods=['GET'])
 def get_orderbook():
-    """Get the latest orderbook data."""
+    
     if cached_orderbook is None:
         return jsonify({'error': 'No orderbook data available'}), 404
     
@@ -149,7 +144,7 @@ def get_orderbook():
 
 @app.route('/api/simulate', methods=['POST'])
 def simulate_trade():
-    """Simulate a trade and return analytics."""
+   
     if cached_orderbook is None:
         return jsonify({'error': 'No orderbook data available'}), 404
     
@@ -165,7 +160,7 @@ def simulate_trade():
 
 @app.route('/api/status', methods=['GET'])
 def get_status():
-    """Get the backend service status."""
+    
     status = {
         'status': 'online',
         'lastUpdate': last_update,
